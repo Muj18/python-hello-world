@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-helloworld
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-helloworld
+  template:
+    metadata:
+      labels:
+        app: python-helloworld
+    spec:
+      containers:
+        - name: python-helloworld
+          image: local/helloworld-app
+          imagePullPolicy: Never
+          ports:
+            - name: web
+              containerPort: 8000
+              protocol: TCP
